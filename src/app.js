@@ -43,6 +43,8 @@ const adminRoutes = require("./routes/admin_routes");
 
 const productRoutes = require("./routes/product_routes");
 
+const cartRoutes = require("./routes/cart_routes")
+
 
 // Mount the authentication routes under the /api/users prefix
 app.use("/api/users", authRoutes);
@@ -52,6 +54,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.use("/api/products", productRoutes);
+
+app.use("/api/users", cartRoutes);
 
 
 // Root test route to verify the API is running
