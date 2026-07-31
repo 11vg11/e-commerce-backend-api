@@ -45,6 +45,10 @@ const productRoutes = require("./routes/product_routes");
 
 const cartRoutes = require("./routes/cart_routes")
 
+const orderRoutes = require("./routes/order_routes");
+
+const { notFound, errorHandler } = require("./middleware/error.middleware");
+
 
 // Mount the authentication routes under the /api/users prefix
 app.use("/api/users", authRoutes);
@@ -55,7 +59,9 @@ app.use("/api/admin", adminRoutes);
 
 app.use("/api/products", productRoutes);
 
-app.use("/api/users", cartRoutes);
+app.use("/api/cart", cartRoutes);
+
+app.use("/api/orders", orderRoutes);
 
 
 // Root test route to verify the API is running
@@ -64,6 +70,10 @@ app.get("/", (req, res) => {
         message: "E-commerce API running"
     });
 });
+
+// Keep these last so unmatched routes and uncaught errors receive one consistent response.
+app.use(notFound);
+app.use(errorHandler);
 
 
 // Export the configured app instance to be used by server.js

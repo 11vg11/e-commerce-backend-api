@@ -11,7 +11,7 @@ const createProduct = async (productData) => {
 
 
 
-const gatAllProducts = async () => {
+const getAllProducts = async () => {
 
     const products = await Product.find({
 
@@ -81,12 +81,11 @@ const deleteProduct = async (id) => {
 
 module.exports = {
     createProduct,
-    gatAllProducts,
+    getAllProducts,
     getProductById,
     updateProduct,
     deleteProduct
 };
-
 
 
 

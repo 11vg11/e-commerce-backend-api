@@ -8,10 +8,10 @@ const router = express.Router();
 const protect = require("../middleware/auth.middleware");
 
 
-router.get("./profile", protect, (req, res) => {
+router.get("/profile", protect, (req, res) => {
     res.json({
         success: true,
-        message: "Prtected route accessed",
+        message: "Protected route accessed",
 
         user: req.user
     });

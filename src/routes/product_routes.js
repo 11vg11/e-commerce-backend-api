@@ -15,22 +15,19 @@ const {
 
 const protect = require("../middleware/auth.middleware");
 
-const authorize = require("../middleware/role.milddleware.js");
+const authorize = require("../middleware/role.middleware");
 
 
-// Admin routes
+// Public product routes
+router.get("/", getAllProducts);
+
+router.get("/:id", getProductById);
+
+// Admin product routes
 
 
 router.post(
     "/",
-    protect,
-    authorize("admin"),
-    createProduct
-);
-
-
-router.post(
-    "/:id",
     protect,
     authorize("admin"),
     createProduct
@@ -54,5 +51,3 @@ router.delete(
 
 
 module.exports = router;
-
-

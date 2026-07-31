@@ -1,5 +1,19 @@
 const cartService = require("../services/cart_service");
 
+const getErrorStatus = (error) => {
+    if (error.name === "CastError") return 400;
+
+    if (error.message === "Product not found" || error.message === "Product not in cart" || error.message === "Cart not found") {
+        return 404;
+    }
+
+    if (error.message === "Quantity must be a positive integer" || error.message === "Not enough product stock") {
+        return 400;
+    }
+
+    return 500;
+};
+
 
 
 // GET /api/cart
@@ -24,9 +38,9 @@ const getCart = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
             success: false,
-            messsage: error.message
+            message: error.message
         });
 
     }
@@ -58,7 +72,7 @@ const addToCart = async (req, res) => {
         });
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             success: false,
 
@@ -100,7 +114,7 @@ const updateCartItem = async (req, res) => {
     } catch (error) {
 
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             success: false,
 
@@ -145,7 +159,7 @@ const removeFromCart = async (req, res) => {
     } catch (error) {
 
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             success: false,
 
@@ -185,7 +199,7 @@ const clearCart = async (req, res) => {
     } catch (error) {
 
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             success: false,
 

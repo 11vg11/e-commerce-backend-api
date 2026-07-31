@@ -1,7 +1,7 @@
 const productService = require("../services/product_service");
 
 
-const createProduct = async (re, res) => {
+const createProduct = async (req, res) => {
 
     try {
 
@@ -17,7 +17,7 @@ const createProduct = async (re, res) => {
 
 
     } catch (error) {
-        res.status(500).json({
+        res.status(error.name === "ValidationError" || error.name === "CastError" ? 400 : 500).json({
             success: false,
             message: error.message
 
@@ -51,7 +51,7 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
 
     try {
-        const product = await productService.getProductById();
+        const product = await productService.getProductById(req.params.id);
 
         if (!product) {
 
@@ -68,7 +68,7 @@ const getProductById = async (req, res) => {
         })
     } catch (error) {
 
-        res.status(500).json({
+        res.status(error.name === "CastError" ? 400 : 500).json({
             success: false,
             message: error.message
         });
@@ -104,7 +104,7 @@ const updateProduct = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).json({
+        res.status(error.name === "ValidationError" || error.name === "CastError" ? 400 : 500).json({
             success: false,
             message: error.message
         });
@@ -136,7 +136,7 @@ const deleteProduct = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(error.name === "CastError" ? 400 : 500).json({
             success: false,
             message: error.message
         });
@@ -155,6 +155,5 @@ module.exports = {
     updateProduct,
     deleteProduct
 };
-
 
 
