@@ -1,8 +1,16 @@
 // This file is the main startup file for the backend.
 // It loads the environment, connects to MongoDB, and starts the server.
 
+
+
+
+// At the very top of src/server.js   // that becouse of my notebook PORT hard configuration use below methd 
+require('dotenv').config({ override: true });
+
+
+
 // Load environment variables from the .env file into process.env
-require("dotenv").config();
+// require("dotenv").config();
 
 // Import the configured Express app
 const app = require("./app");

@@ -589,6 +589,16 @@ API Testing
 
 ---
 
+## What We Have Done Since the Last Git Push
+
+- Improved the backend API structure and added more complete endpoints for products, users, carts, and orders.
+- Enhanced authentication and user flow support for both admin and customer accounts.
+- Added and refined cart and order management functionality to support the full shopping experience.
+- Added Postman environment support for local testing with variables such as base URL, auth tokens, and sample IDs.
+- Improved local setup and testing documentation to make the project easier to run and verify.
+
+---
+
 ## Project Status
 
 Authentication foundation is complete. The backend is ready to start implementing the actual e-commerce business logic.
